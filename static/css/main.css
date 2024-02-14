@@ -1,0 +1,31 @@
+:root {
+    --main: #78091e;
+    --light-gray: #d6d6d6;
+}
+
+.top-bar {
+    background-color: var(--main);
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.copy-right {
+    background-color: var(--light-gray);
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.logo {
+    width: 100px;
+}
+
+.student-image {
+    width: 70px;
+}
+
+.red {
+    color: red;
+}

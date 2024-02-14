@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Attendance{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <button class="btn btn-primary" onclick="startRecognition()">Start Face Recognition</button>
+        <h1>Attendance Information</h1>
+        <button class="btn btn-primary" onclick="window.location.reload()">Refresh</button>
+        <table id="attendance-info" class="table table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="th-sm">ID</th>
+                <th class="th-sm">Photo</th>
+                <th class="th-sm">Student Number</th>
+                <th class="th-sm">Student Name</th>
+                <th class="th-sm">Present</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student[0] }}</td>
+                    {% set image_path = student[3] %}
+                    {% set image_filename = image_path.split('\\')[-1] %}
+                    <td><img class="student-image" src="{{ url_for('static', filename='student_images/' + image_filename) }}"></td>
+                    <td>{{ student[1] }}</td>
+                    <td>{{ student[2] }}</td>
+                    <td>{{ student[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function startRecognition() {
+        fetch('/start_recognition').then(response => {
+            console.log(response);
+        });
+    }
+</script>
+
+{% endblock %}
+
