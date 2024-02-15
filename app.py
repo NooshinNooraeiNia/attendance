@@ -27,6 +27,7 @@ def init_db():
 init_db()
 
 def insert_student(student_no, name, image_path):
+    print(image_path)
     name = name.upper()
     try:
         conn = sqlite3.connect(DATABASE_FILE)

@@ -4,7 +4,6 @@ import cv2
 import face_recognition
 import os
 
-
 class FaceRecognitionThread(Thread):
     def __init__(self):
         Thread.__init__(self)
