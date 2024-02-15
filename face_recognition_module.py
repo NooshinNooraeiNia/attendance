@@ -5,9 +5,10 @@ import face_recognition
 import os
 
 class FaceRecognitionThread(Thread):
-    def __init__(self):
+    def __init__(self, use_camera):
         Thread.__init__(self)
         self.daemon = True
+        self.use_camera = use_camera
         self.start()
 
     def run(self):

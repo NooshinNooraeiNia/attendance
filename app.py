@@ -63,7 +63,7 @@ def attendance():
 
 @app.route('/start_recognition')
 def start_recognition():
-    FaceRecognitionThread()
+    FaceRecognitionThread(True)
     return 'Face recognition started!'
 
 @app.route('/add_show_student')
