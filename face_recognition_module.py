@@ -18,7 +18,7 @@ class FaceRecognitionThread(Thread):
         for file_name in os.listdir('static/student_images'):
             if file_name.endswith(".jpg") or file_name.endswith(".png"):
                 name = os.path.splitext(file_name)[0]
-                image_path = os.path.join('static/\student_images', file_name)
+                image_path = os.path.join(os.getcwd() + '/static/student_images', file_name)
                 student_image = face_recognition.load_image_file(image_path)
                 encoding = face_recognition.face_encodings(student_image)[0]
 
