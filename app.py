@@ -85,7 +85,7 @@ def add_student():
     if not student_no or not name:
         return redirect(url_for('add_show_student'))
 
-    image_folder = os.path.join("static/student_images")
+    image_folder = os.path.join(os.getcwd(), "static/student_images")
     os.makedirs(image_folder, exist_ok=True)
 
     image_filename = f"{student_no}_{name.upper()}.jpg"

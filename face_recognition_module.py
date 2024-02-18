@@ -3,6 +3,7 @@ import sqlite3
 import cv2
 import face_recognition
 import os
+import sys
 
 class FaceRecognitionThread(Thread):
     def __init__(self, use_camera):
@@ -19,14 +20,18 @@ class FaceRecognitionThread(Thread):
         for file_name in os.listdir('static/student_images'):
             if file_name.endswith(".jpg") or file_name.endswith(".png"):
                 name = os.path.splitext(file_name)[0]
-                image_path = os.path.join(os.getcwd() + '/static/student_images', file_name)
+                image_path = os.path.join('static/\student_images', file_name)
                 student_image = face_recognition.load_image_file(image_path)
                 encoding = face_recognition.face_encodings(student_image)[0]
 
                 known_encodings.append(encoding)
                 known_names.append(name)
 
-        video_capture = cv2.VideoCapture(0)
+        if self.use_camera:
+            video_capture = cv2.VideoCapture(0)
+        else:
+            # Use a placeholder video file or any other source
+            video_capture = cv2.VideoCapture('path_to_video_file')
 
         while True:
             ret, frame = video_capture.read()
@@ -71,4 +76,6 @@ class FaceRecognitionThread(Thread):
         video_capture.release()
         cv2.destroyAllWindows()
 
-
+if __name__ == "__main__":
+    use_camera = input("Do you want to use the camera? (y/n): ").lower() == 'y'
+    FaceRecognitionThread(use_camera)

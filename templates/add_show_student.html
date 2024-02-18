@@ -39,7 +39,7 @@
                     <td>{{ student[0] }}</td>
                     {% set image_path = student[3] %}
                     {% set image_filename = image_path.split('\\')[-1] %}
-                    <td><img class="student-image" src="/{{ image_filename }}"></td>
+                    <td><img class="student-image" src="{{ url_for('static', filename='student_images/' + image_filename) }}"></td>
                     <td>{{ student[1] }}</td>
                     <td>{{ student[2] }}</td>
                 </tr>
